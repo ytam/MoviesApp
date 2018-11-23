@@ -1,6 +1,6 @@
 
 
-package io.github.ytam;
+package io.github.ytam.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -18,6 +18,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
+import io.github.ytam.BuildConfig;
+import io.github.ytam.R;
 import io.github.ytam.api.APIClient;
 import io.github.ytam.mvp.model.detail.DetailModel;
 import io.github.ytam.mvp.model.search.ResultsItem;

@@ -23,4 +23,8 @@ public interface APICall {
     @GET("movie/{movie_id}")
     Call<DetailModel> getDetailMovie(@Path("movie_id") String movie_id);
 
+
+    @GET("tv/popular?")
+    Call<SearchModel> getPopularTvSeries(@Query("page") int page);
+
 }

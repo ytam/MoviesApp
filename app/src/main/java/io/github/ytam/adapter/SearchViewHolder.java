@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.ytam.BuildConfig;
-import io.github.ytam.DetailActivity;
+import io.github.ytam.ui.activity.DetailActivity;
 import io.github.ytam.mvp.model.search.ResultsItem;
 import io.github.ytam.utils.DateTime;
 

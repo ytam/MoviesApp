@@ -1,48 +1,47 @@
-package io.github.ytam.fragment;
+package io.github.ytam.ui.fragment;
 
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
+        import android.os.Bundle;
+        import android.support.v4.app.Fragment;
+        import android.support.v4.widget.SwipeRefreshLayout;
+        import android.support.v7.widget.DividerItemDecoration;
+        import android.support.v7.widget.LinearLayoutManager;
+        import android.support.v7.widget.PopupMenu;
+        import android.support.v7.widget.RecyclerView;
+        import android.view.LayoutInflater;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.Toast;
 
-import com.mancj.materialsearchbar.MaterialSearchBar;
+        import com.mancj.materialsearchbar.MaterialSearchBar;
 
-import java.text.NumberFormat;
-import java.util.List;
+        import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.github.ytam.R;
-import io.github.ytam.adapter.SearchAdapter;
-import io.github.ytam.api.APIClient;
-import io.github.ytam.mvp.MainPresenter;
-import io.github.ytam.mvp.MainView;
-import io.github.ytam.mvp.model.search.ResultsItem;
-import io.github.ytam.mvp.model.search.SearchModel;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+        import butterknife.BindView;
+        import butterknife.ButterKnife;
+        import io.github.ytam.R;
+        import io.github.ytam.adapter.SearchAdapter;
+        import io.github.ytam.api.APIClient;
+        import io.github.ytam.mvp.MainPresenter;
+        import io.github.ytam.mvp.MainView;
+        import io.github.ytam.mvp.model.search.ResultsItem;
+        import io.github.ytam.mvp.model.search.SearchModel;
+        import retrofit2.Call;
+        import retrofit2.Callback;
+        import retrofit2.Response;
 
-import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
+        import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 
-public class PopulerMoviesFragment extends Fragment  implements MainView,
+public class PopulerTvSeriesFragment extends Fragment implements MainView,
         MaterialSearchBar.OnSearchActionListener,
         SwipeRefreshLayout.OnRefreshListener,
         PopupMenu.OnMenuItemClickListener  {
 
     @BindView(R.id.swipe_refresh) SwipeRefreshLayout swipe_refresh;
     @BindView(R.id.search_bar) MaterialSearchBar search_bar;
-    @BindView(R.id.rv_movielist) RecyclerView rv_movielist;
+    @BindView(R.id.rv_movielist)
+    RecyclerView rv_movielist;
 
     private SearchAdapter adapter;
 
@@ -54,9 +53,7 @@ public class PopulerMoviesFragment extends Fragment  implements MainView,
     private int totalPages = 1;
 
 
-
-
-    public PopulerMoviesFragment() {
+    public PopulerTvSeriesFragment() {
         // Required empty public constructor
     }
 
@@ -99,7 +96,6 @@ public class PopulerMoviesFragment extends Fragment  implements MainView,
         stopRefrehing();
         startRefreshing();
     }
-
 
     @Override
     public void onDestroy() {
@@ -171,7 +167,7 @@ public class PopulerMoviesFragment extends Fragment  implements MainView,
 
 //        getSupportActionBar().setSubtitle("");
 
-        if (movie_title.isEmpty()) apiCall = apiClient.getService().getPopularMovie(currentPage);
+        if (movie_title.isEmpty()) apiCall = apiClient.getService().getTopRatedMovie(currentPage);
         else apiCall = apiClient.getService().getSearchMovie(currentPage, movie_title);
 
         apiCall.enqueue(new Callback<SearchModel>() {
@@ -180,7 +176,6 @@ public class PopulerMoviesFragment extends Fragment  implements MainView,
                 if (response.isSuccessful()) {
                     totalPages = response.body().getTotalPages();
                     List<ResultsItem> items = response.body().getResults();
-                    showResults(response.body().getTotalResults());
 
                     if (currentPage > 1) adapter.updateData(items);
                     else adapter.replaceAll(items);
@@ -211,16 +206,5 @@ public class PopulerMoviesFragment extends Fragment  implements MainView,
     private void stopRefrehing() {
         if (swipe_refresh.isRefreshing()) swipe_refresh.setRefreshing(false);
     }
-
-    private void showResults(int totalResults) {
-        String results;
-
-        String formatResults = NumberFormat.getIntegerInstance().format(totalResults);
-
-        if (totalResults > 0) {
-            results = "I found " + formatResults + " movie" + (totalResults > 1 ? "s" : "") + " for you :)";
-        } else results = "Sorry! I can't find " + movie_title + " everywhere :(";
-
-//        getSupportActionBar().setSubtitle(results);
-    }
 }
+

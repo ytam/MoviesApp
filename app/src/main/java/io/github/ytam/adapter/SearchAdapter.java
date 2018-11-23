@@ -38,7 +38,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
     public SearchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new SearchViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(
-                        io.github.ytam.R.layout.activity_main_item, parent, false
+                        io.github.ytam.R.layout.item_movie, parent, false
                 )
         );
     }

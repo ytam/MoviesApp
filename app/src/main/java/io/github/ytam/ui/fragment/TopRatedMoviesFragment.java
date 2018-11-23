@@ -1,4 +1,4 @@
-package io.github.ytam.fragment;
+package io.github.ytam.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
-import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.BindView;

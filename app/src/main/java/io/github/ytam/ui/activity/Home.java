@@ -1,4 +1,4 @@
-package io.github.ytam;
+package io.github.ytam.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,8 +16,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.github.ytam.fragment.PopulerMoviesFragment;
-import io.github.ytam.fragment.TopRatedMoviesFragment;
+import io.github.ytam.R;
+import io.github.ytam.ui.fragment.PopulerMoviesFragment;
+import io.github.ytam.ui.fragment.PopulerTvSeriesFragment;
+import io.github.ytam.ui.fragment.TopRatedMoviesFragment;
 
 public class Home extends AppCompatActivity {
 
@@ -43,6 +45,7 @@ public class Home extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PopulerMoviesFragment(), "Populer");
         adapter.addFragment(new TopRatedMoviesFragment(), "Top Rated");
+        adapter.addFragment(new PopulerTvSeriesFragment(), "Tv Series");
 
         viewPager.setAdapter(adapter);
     }

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="io.github.ytam.Home"
+            android:name="io.github.ytam.ui.activity.Home"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="io.github.ytam.DetailActivity"
+            android:name="io.github.ytam.ui.activity.DetailActivity"
             android:parentActivityName="io.github.ytam.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
